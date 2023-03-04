@@ -1,2 +1,12 @@
+# Node modules and build results
 node_modules
 /dist
+
+# MacOS files
+.DS_Store
+
+# VS Code files
+.history
+.vscode
+*.code-workspace
+
