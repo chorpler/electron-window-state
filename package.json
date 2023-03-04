@@ -1,16 +1,22 @@
 {
   "name": "electron-window-state",
-  "version": "5.0.3",
+  "version": "6.0.0",
   "description": "Simple module that helps to save and restore size and position of Electron windows.",
   "license": "MIT",
   "repository": "mawie81/electron-window-state",
-  "main": "index.js",
+  "main": "dist/index.js",
   "author": "Marcel Wiehle",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "scripts": {
-    "test": "xo && ava"
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run compile",
+    "compile": "tsc -p ./tsconfig.json",
+    "test": "eslint -c ./.eslintrc.js src/**/*.ts",
+    "org:test": "xo && ava",
+    "pack": "npm pack",
+    "package": "npm run build && npm run pack"
   },
   "keywords": [
     "electron"
@@ -21,12 +27,24 @@
   ],
   "dependencies": {
     "jsonfile": "^4.0.0",
-    "mkdirp": "^0.5.1"
+    "mkdirp": "0.5.6"
   },
   "devDependencies": {
+    "@types/jsonfile": "4.0.2",
+    "@types/mkdirp": "0.5.2",
+    "@types/node": "^10.17.8",
+    "@typescript-eslint/eslint-plugin": "5.54.0",
+    "@typescript-eslint/parser": "5.54.0",
     "ava": "^0.25.0",
+    "cross-env": "7.0.3",
+    "electron": "4.2.12",
+    "eslint": "8.35.0",
+    "eslint-plugin-css": "0.6.0",
+    "eslint-plugin-html": "7.1.0",
     "mockery": "^2.1.0",
+    "rimraf": "2.7.1",
     "sinon": "^6.1.5",
+    "typescript": "3.5.3",
     "xo": "^0.22.0"
   },
   "xo": {

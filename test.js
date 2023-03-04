@@ -1,6 +1,7 @@
 import test from 'ava';
 import mockery from 'mockery';
 import sinon from 'sinon';
+import { spy } from 'sinon';
 
 test.before(() => {
   const jsonfileMock = {
@@ -34,7 +35,7 @@ test('returns defaultWidth and defaultHeight if no state exists', t => {
 
 test('tries to read state file from the default location', t => {
   const jsonfile = require('jsonfile');
-  sinon.spy(jsonfile, 'readFileSync');
+  spy(jsonfile, 'readFileSync');
 
   require('.')({defaultWidth: 1000, defaultHeight: 2000});
 
@@ -45,7 +46,7 @@ test('tries to read state file from the default location', t => {
 
 test('tries to read state file from the configured source', t => {
   const jsonfile = require('jsonfile');
-  sinon.spy(jsonfile, 'readFileSync');
+  spy(jsonfile, 'readFileSync');
 
   require('.')({defaultWidth: 1000, defaultHeight: 2000, path: '/data', file: 'state.json'});
 
@@ -125,9 +126,9 @@ test('maximize and set the window fullscreen if enabled', t => {
   sinon.stub(jsonfile, 'readFileSync').returns(savedState);
 
   const win = {
-    maximize: sinon.spy(),
-    setFullScreen: sinon.spy(),
-    on: sinon.spy()
+    maximize: spy(),
+    setFullScreen: spy(),
+    on: spy(),
   };
 
   const state = require('.')({defaultWidth: 1000, defaultHeight: 2000});
@@ -154,10 +155,10 @@ test('saves the state to the file system', t => {
   const screenBounds = {x: 0, y: 0, width: 100, height: 100};
 
   const mkdirp = require('mkdirp');
-  sinon.spy(mkdirp, 'sync');
+  spy(mkdirp, 'sync');
 
   const jsonfile = require('jsonfile');
-  sinon.spy(jsonfile, 'writeFileSync');
+  spy(jsonfile, 'writeFileSync');
 
   const {screen} = require('electron');
   sinon.stub(screen, 'getDisplayMatching').returns({bounds: screenBounds});
