@@ -1,0 +1,14 @@
+# Node modules and build results
+node_modules
+
+# MacOS files
+.DS_Store
+
+# VS Code files
+.history
+.vscode
+*.code-workspace
+
+# Build packages
+/electron-window-state*.tar.gz
+/electron-window-state*.tgz
